@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsors and Stakeholders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section input, .section textarea, .section select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .section label {
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+
+        .stakeholder-list {
+            width: 100%;
+            margin-top: 40px;
+            border-collapse: collapse;
+        }
+
+        .stakeholder-list th, .stakeholder-list td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .stakeholder-list th {
+            background-color: #f2f2f2;
+        }
+
+        .stakeholder-list tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .action-buttons button {
+            background-color: #ff9800;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-buttons button:hover {
+            background-color: #f57c00;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+        }
+
+        .delete-button:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Sponsors and Stakeholders</h1>
+
+    <!-- Add Sponsor Form -->
+    <div class="section">
+        <h2>Add New Sponsor</h2>
+        <form id="addSponsorForm">
+            <div>
+                <label for="sponsorName">Sponsor Name</label>
+                <input type="text" id="sponsorName" name="sponsorName" placeholder="Enter sponsor name" required>
+            </div>
+
+            <div>
+                <label for="sponsorDescription">Sponsor Description</label>
+                <textarea id="sponsorDescription" name="sponsorDescription" placeholder="Enter sponsor description" rows="4" required></textarea>
+            </div>
+
+            <div>
+                <label for="sponsorLogo">Sponsor Logo URL</label>
+                <input type="text" id="sponsorLogo" name="sponsorLogo" placeholder="Enter sponsor logo URL" required>
+            </div>
+
+            <div>
+                <label for="sponsorRole">Sponsor Role</label>
+                <select id="sponsorRole" name="sponsorRole" required>
+                    <option value="" disabled selected>Select role</option>
+                    <option value="Platinum">Platinum</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Silver">Silver</option>
+                    <option value="Bronze">Bronze</option>
+                </select>
+            </div>
+
+            <div class="button-container">
+                <button type="submit">Add Sponsor</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Add Stakeholder Form -->
+    <div class="section">
+        <h2>Add New Stakeholder</h2>
+        <form id="addStakeholderForm">
+            <div>
+                <label for="stakeholderName">Stakeholder Name</label>
+                <input type="text" id="stakeholderName" name="stakeholderName" placeholder="Enter stakeholder name" required>
+            </div>
+
+            <div>
+                <label for="stakeholderDescription">Stakeholder Description</label>
+                <textarea id="stakeholderDescription" name="stakeholderDescription" placeholder="Enter stakeholder description" rows="4" required></textarea>
+            </div>
+
+            <div>
+                <label for="stakeholderRole">Stakeholder Role</label>
+                <select id="stakeholderRole" name="stakeholderRole" required>
+                    <option value="" disabled selected>Select role</option>
+                    <option value="Organizer">Organizer</option>
+                    <option value="Volunteer">Volunteer</option>
+                    <option value="Partner">Partner</option>
+                    <option value="Supporter">Supporter</option>
+                </select>
+            </div>
+
+            <div class="button-container">
+                <button type="submit">Add Stakeholder</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Sponsor List Table -->
+    <div class="section">
+        <h2>Sponsors List</h2>
+        <table class="stakeholder-list">
+            <thead>
+                <tr>
+                    <th>Sponsor Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="sponsorTableBody">
+                <!-- Dynamic content will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Stakeholder List Table -->
+    <div class="section">
+        <h2>Stakeholders List</h2>
+        <table class="stakeholder-list">
+            <thead>
+                <tr>
+                    <th>Stakeholder Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="stakeholderTableBody">
+                <!-- Dynamic content will be added here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Temporary data for sponsors and stakeholders
+    const sponsors = [];
+    const stakeholders = [];
+
+    // Handle adding a new sponsor
+    document.getElementById('addSponsorForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const sponsorName = document.getElementById('sponsorName').value;
+        const sponsorDescription = document.getElementById('sponsorDescription').value;
+        const sponsorLogo = document.getElementById('sponsorLogo').value;
+        const sponsorRole = document.getElementById('sponsorRole').value;
+
+        const newSponsor = {
+            name: sponsorName,
+            description: sponsorDescription,
+            logo: sponsorLogo,
+            role: sponsorRole,
+        };
+
+        sponsors.push(newSponsor);
+        renderSponsorTable();
+        this.reset();
+    });
+
+    // Handle adding a new stakeholder
+    document.getElementById('addStakeholderForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const stakeholderName = document.getElementById('stakeholderName').value;
+        const stakeholderDescription = document.getElementById('stakeholderDescription').value;
+        const stakeholderRole = document.getElementById('stakeholderRole').value;
+
+        const newStakeholder = {
+            name: stakeholderName,
+            description: stakeholderDescription,
+            role: stakeholderRole,
+        };
+
+        stakeholders.push(newStakeholder);
+        renderStakeholderTable();
+        this.reset();
+    });
+
+    // Render the sponsor table dynamically
+    function renderSponsorTable() {
+        const tableBody = document.getElementById('sponsorTableBody');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        sponsors.forEach((sponsor, index) => {
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td>${sponsor.name}</td>
+                <td>${sponsor.role}</td>
+                <td class="action-buttons">
+                    <button class="delete-button" onclick="deleteSponsor(${index})">Delete</button>
+                </td>
+            `;
+            
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Render the stakeholder table dynamically
+    function renderStakeholderTable() 
+        const tableBody = document.getElementById('stakeholderTableBody');
+        tableBody.innerHTML 

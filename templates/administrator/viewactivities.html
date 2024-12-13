@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Card Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background-color: #1da7d9;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content p {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .status {
+            font-weight: bold;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .status.active {
+            background-color: #1da7d9;
+        }
+
+        .status.inactive {
+            background-color: #dc3545;
+        }
+
+        .level {
+            font-size: 14px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align:center">Table Cards Example</h2>
+
+    <div class="container">
+        <!-- Card 1 -->{%for i in val%}
+        <div class="card">
+            <div class="card-header">Items</div>
+            <div class="card-content">
+                <p><span class="label">Rules:{{i.rules}}</span></p>
+                <p><span class="label">Description:{{i.description}}</span></p>
+                <p><span class="label">Status:</span> <span class="status active">{{i.status}}</span></p>
+                <p><span class="label">Level:{{i.level}}</span></p>
+                <p><span class="label">Club:{{i.CLUB.name}}</span></p>
+            </div>
+        </div>
+        {%endfor%}
+
+        <!-- Card 2 -->
+      </div>  
+</body>
+</html>
