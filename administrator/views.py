@@ -67,74 +67,13 @@ class clubhomepage(View):
     def get(self,request):
         return render(request,'clubs/clubhomepage.html') 
 
-class addremovecollege(View):
-    def get(self,request):
-        obj=collegetable.objects.all()
-        print(obj)
-        return render(request,'administrator/addremovecollege.html',{'val':obj})
-    def post(self,request):
-        form=collegeform(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('''<script>alert("ADDED");window.location="/addremovecollege/"</script>''')    
-        return HttpResponse('''<script>alert("FAILED");window.location="/addremovecollege/"</script>''')
-    
-class collegeedit(View):
-    def get(self,request,id):
-        obj=collegetable.objects.get(id=id)
-        return render(request,'administrator/collegeedit.html',{'val':obj})
-    def post(self,request,id):
-        obj = collegetable.objects.get(id=id)
-        print("obj")
-        form = Updatecollegeform(request.POST,instance=obj)
-        if form.is_valid():
-            form.save()
-        return HttpResponse('''<script>alert("UPDATED");window.location="/addremovecollege/"</script>''')
-    
-class Deletecollegetable(View):
-    def get(self,request,id):
-        obj=collegetable.objects.get(id=id)
-        obj.delete()
-        return HttpResponse('''<script>alert("DELETED");window.location="/addremovecollege"</script>''')      
                                        
         
- 
-class addremoveschool(View):
-   def get(self,request): 
-        obj=schooltable.objects.all()
-        print(obj)
-        return render(request,'administrator/addremoveschool.html',{'val':obj})
-   def post(self,request):
-        form=schoolform(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('''<script>alert("ADDED");window.location="/addremoveschool/"</script>''')    
-        return HttpResponse('''<script>alert("FAILED");window.location="/addremoveschool/"</script>''')
-
-class schooledit(View):
-    def get(self,request,id):
-        obj=schooltable.objects.get(id=id)
-        return render(request,'administrator/schooledit.html',{'val':obj})
-    def post(self,request,id):
-        obj = schooltable.objects.get(id=id)
-        print(obj)
-        form = Updateschoolform(request.POST,instance=obj)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('''<script>alert("UPDATED");window.location="/addremoveschool/"</script>''')
-    
-class Deleteschooltable(View):
-    def get(self,request,id):
-        obj=schooltable.objects.get(id=id)
-        obj.delete()
-        return HttpResponse('''<script>alert("DELETED");window.location="/addremoveschool"</script>''')      
-                                       
-        
-class notification(View):
+class sendnotification(View):
     def get(self,request):
         obj=User.objects.all()
         abc=event.objects.all()
-        return render(request, 'administrator/notification.html', {'val': obj, 'val2': abc})
+        return render(request, 'administrator/sendnotification.html', {'val': obj, 'val2': abc})
     def post(self,request):
         form=notificationform(request.POST)
         if form.is_valid():
@@ -190,15 +129,30 @@ class View_user(View):
         obj1=User.objects.filter(name=name)
         print(obj1)
         return render(request,'administrator/viewuser.html', {'val1':obj1})
-class viewfeedback(View):
-     def get(self,request):
-        obj = feedback.objects.all()
-        return render(request,'administrator/viewfeedback.html',{'val':obj})
 
 # ////////////////////////// club//////////////
-class register(View):
+class clubhomepage(View):
     def get(self,request):
-        return render(request,'clubs/register.html')
+        return render(request,'clubs/clubhomepage.html') 
+    
+class clublogin(View):
+    def get(self,request):
+        return render(request,'clubs/clublogin.html')
+    
+class sendrequest(View):
+    def get(self,request):
+        return render(request,'clubs/sendrequest.html') 
+    
+
+class sendcomplaints(View):
+    def get(self,request):
+        return render(request,'clubs/sendcomplaints.html') 
+    
+    
+      
+class studentregister(View):
+    def get(self,request):
+        return render(request,'clubs/studentregister.html')
     def post(self,request):
         form=ClubRegistrartionForm(request.POST)
         if form.is_valid():
@@ -212,24 +166,62 @@ class register(View):
             f.save()
             return HttpResponse('''<script>alert("ADDED");window.location="/"</script>''')
 
-
-class viewinstruction(View):
+    
+class viewnotificasion(View):
     def get(self,request):
-        return render(request,'clubs/addinstructions.html')
-class viewreply(View):
-    def get(self,request):
-        return render(request,'clubs/viewreply.html')
+        return render(request,'clubs/viewnotification.html')
+    
 class viewfeedback(View):
     def get(self,request):
         return render(request,'clubs/viewfeedback.html')
+    
+class Status(View):
+     def get(self,request):
+        return render(request,'clubs/addinstructions.html')
 
-#////////////////EVENT/////////////
-class feedback(View):
+
+#////////////////CLUB COORDINATOR/////////////
+class addmanagemembers(View):
     def get(self,request):
-        return render(request,'event/feedback.html')
+        return render(request,'Club coordinator/addmanagemembers.html')
+    
+class addevent(View):
+    def get(self,request):
+        return render(request,'Club coordinator/addevent.html')
+    
+class addinstructions(View):
+    def get(self,request):
+        return render(request,'Club coordinator/addinstructions.html')
+    
+class coordinatorregister(View):
+    def get(self,request):
+        return render(request,'Club coordinator/coordinatorregister.html')
+
 class information(View):
     def get(self,request):
-        return render(request,'event/information.html')
+        return render(request,'Club coordinator/information.html')
+    
+class notificationtable(View):
+    def get(self,request):
+        return render(request,'Club coordinator/notificationtable.html')
+    
+class sendnotification(View):
+    def get(self,request):
+        return render(request,'Club coordinator/sendnotification.html')
+    
+class viewcomplaints(View):
+    def get(self,request):
+        return render(request,'Club coordinator/viewcomplaints.html')
+
+
+
+class viewfeedback(View):
+    def get(self,request):
+        return render(request,'Club coordinator/viewfeedback.html')
+    
+class viewrequest(View):
+    def get(self,request):
+        return render(request,'Club coordinator/viewrequest.html')
 
 
     

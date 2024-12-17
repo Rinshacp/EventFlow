@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Entries</title>
+    <title>Request table</title>
     <style>
         table {
             width: 100%;
@@ -21,26 +21,23 @@
 </head>
 <body>
 
-<h1>Reply page</h1>
+<h1>Status</h1>
 <table id="entriesTable">
     <thead>
         <tr>
-            <td>username</td>
-            <td>feedback</td>
+            <td>User ID</td>
+            <td>Club ID</td>
     
-            <td>reply</td>
+            <td>Status</td>
         <tr>
             {%for i in val%}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{i.User.ID}}</td>
+                <td>{{i.Club.ID}}</td>
+                <td>{{i.Status}}</td>
                 
             </tr>
             {%endfor%}
-            <form>
-            <button type="submit" class="btn">submit</button>
-            </form>
     
 
         </tr>

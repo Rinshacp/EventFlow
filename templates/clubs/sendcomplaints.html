@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Feedback</title>
+    <title>Send complaints</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,7 +15,7 @@
             height: 100vh;
         }
 
-        .feedback-form {
+        .Complaints-form {
             background-color: white;
             padding: 20px;
             border-radius: 8px;
@@ -23,22 +23,22 @@
             width: 400px;
         }
 
-        .feedback-form h2 {
+        .Complaints-form h2 {
             text-align: center;
             margin-bottom: 20px;
             color: #333;
         }
 
-        .feedback-form label {
+        .Complaints-form label {
             display: block;
             margin-bottom: 10px;
             color: #555;
             font-weight: bold;
         }
 
-        .feedback-form input[type="text"],
-        .feedback-form textarea,
-        .feedback-form input[type="date"] {
+        .Complaints-form input[type="text"],
+        .Complaints-form textarea,
+        .Complaints-form input[type="date"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -46,12 +46,12 @@
             border-radius: 4px;
         }
 
-        .feedback-form textarea {
+        .Complaints-form textarea {
             resize: vertical;
             height: 100px;
         }
 
-        .feedback-form button {
+        .Complaints-form button {
             width: 100%;
             padding: 10px;
             background-color: #4CAF50;
@@ -62,30 +62,31 @@
             font-size: 16px;
         }
 
-        .feedback-form button:hover {
+        .Complaints-form button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
 
-<div class="feedback-form">
-    <h2>Send Feedback</h2>
-    <form action="/send-feedback" method="POST">
+<div class="Complaints-form">
+    <h2>Send Complaints</h2>
+    <form action="/send-Complaints" method="POST">
+        
         <!-- Name Input -->
-        <label for="name">Your Name:</label>
+        <label for="name"> Name:</label>
         <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
         <!-- Feedback Message -->
-        <label for="message">Feedback:</label>
-        <textarea id="message" name="message" placeholder="Enter your feedback here..." required></textarea>
+        <label for="message">Complaints:</label>
+        <textarea id="message" name="message" placeholder="Enter your Complaints here..." required></textarea>
 
         <!-- Date Input -->
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
 
         <!-- Submit Button -->
-        <button type="submit">Send Feedback</button>
+        <button type="submit">Send Complaints</button>
     </form>
 </div>
 

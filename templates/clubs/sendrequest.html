@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>club edit</title>
+  <title>Registration Form</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -94,30 +94,38 @@
 </head>
 <body>
   <div class="form-container">
-    <h2>School edit form</h2>
-    <form action=""method="post">
-      {%csrf_token%}
+    <h2>Send Request</h2>
+    <form action="#">
       <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="Name" name="name" value={{val.name}} >
+        <label for="name"> Name</label>
+        <input type="text" id="name" name="name" required>
       </div>
       <div class="form-group">
-        <label for="address">place</label>
-        <input type="text" id="address" name="place" value={{val.place}} >
+        <label for="Department">Department</label>
+        <input type="text" id="Department" name="Department" required>
       </div>
       <div class="form-group">
-        <label for="address">Address</label>
-        <input type="text" id="address" name="post" value={{val.post}},{{val.pin}} >
+        <label for="Year">Year</label>
+        <input type="Year" id="Year" name="Year" required>
       </div>
       <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phoneno" value={{val.phoneno}}>
+        <label for="club">Club</label>
+        <input type="club" id="club" name="club" required>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" value={{val.email}}>
+        <input type="email" id="email" name="email" required>
       </div>
-      <button type="submit" class="btn">Update</button>
+      <div class="form-group">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+
+      <!-- Gender Selection as Buttons -->
+      <button type="submit" class="btn">send Request</button>
+
+      </div>
+
     </form>
   </div>
 </body>
