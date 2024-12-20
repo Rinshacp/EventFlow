@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Notification Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(221, 218, 218, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, textarea, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #1da7d9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color:#1da7d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Send Notification</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+
+
+            <label for="message">Notification</label>
+            <textarea id="message" name="notification" placeholder="Enter your message here" rows="4" required></textarea>
+            <label for="user">Select User</label>
+            <select id="user">
+                {%for i in  val%}
+                <option value={{i.id}}>{{i.name}}</option>
+                {%endfor%}
+                
+            </select>
+
+            <label for="event">Select Event</label>
+            <select id="event">
+                {%for i in val2%}
+                <option value="event1">{{i.eventname}}</option>
+                {%endfor%}
+
+            </select>
+
+            <button type="submit">Send Notification</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Complaints</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .feedback-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .feedback-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .feedback-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .complaints-form input[type="text"],
+        .complaints-form textarea,
+        .complaints-form input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .complaints-form textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .complaints-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .complaints-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="complaints-form">
+    <h2>Send Complaints</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <!-- Name Input -->
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" value="{{c.username}}" name="name" readonly>
+
+        <input type="hidden" id="name" value="{{c.id}}" name="USER" readonly>
+        <!-- Feedback Message -->
+        <label for="message">Complaints:</label>
+        <textarea id="message" name="complaints" placeholder="Enter your complaints here..." required></textarea>
+
+
+
+        <!-- Submit Button -->
+        <button type="submit">send Complaints</button>
+    </form>
+</div>
+
+</body>
+</html>

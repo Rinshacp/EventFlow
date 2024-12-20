@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* Basic reset to remove margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            padding: 8px;
+            width: 60%;
+            font-size: 16px;
+            margin-right: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .search-container button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: hwb(207 44% 12%);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: hwb(207 44% 12%);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover td {
+            background-color: #ddd;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        
+        <!-- Search Box -->
+        <div class="search-container">
+            <form action="" enctype="multipart/form-data" method="post">
+                {%csrf_token%}
+            <input type="text" id="searchInput" placeholder="Search user details..." name="name">
+            <button type="submit">Search</button>
+        </form>
+        </div>
+        
+        <!-- Table -->
+        <table id="userTable">
+            
+                
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Phoneno</th>
+                <th>DOB</th>
+                <th>Place</th>
+                <th>Post</th>
+                <th>Pin</th>
+                <th>Login ID</th>
+            </tr>
+        
+
+            {%for i in val%}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.phoneno}}</td>
+                <td>{{i.DOB}}</td>
+                <td>{{i.place}}</td>
+                <td>{{i.post}}</td>
+                <td>{{i.pin}}</td>
+                <td>{{i.LOGIN_ID.username}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+    {% if val1%}
+    <table id="userTable">
+            
+                
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Phoneno</th>
+            <th>DOB</th>
+            <th>Place</th>
+            <th>Post</th>
+            <th>Pin</th>
+            <th>Login ID</th>
+        </tr>
+    
+
+        {%for i in val%}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.phoneno}}</td>
+            <td>{{i.DOB}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.post}}</td>
+            <td>{{i.pin}}</td>
+            <td>{{i.LOGIN_ID.username}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+{%endif%}
+
+    
+</body>
+</html>

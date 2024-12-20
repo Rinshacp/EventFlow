@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Students in Clubs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-size: 14px;
+      color: #555;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .form-group select {
+      width: auto;
+      display: inline-block;
+      max-width: 300px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .student-list {
+      margin-top: 30px;
+      border-top: 2px solid #ddd;
+      padding-top: 20px;
+    }
+    .student-list table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .student-list th, .student-list td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    .student-list th {
+      background-color: #f7f7f7;
+    }
+    .remove-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .remove-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Manage Students in Clubs</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="hidden" name="CLUB_ID" value="{{c.id}}">
+      <label for="studentName">Student Name:</label>
+      <input type="text" id="studentName" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="course">Course:</label>
+      <input type="text" id="course" name="course" required>
+    </div>
+
+    <div class="form-group">
+      <label for="course"> Semester:</label>
+      <input type="text" id="Semester" name="semester" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phoneno" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Username:</label>
+      <input type="text" id="email" name="username" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Password:</label>
+      <input type="text" id="email" name="password" required>
+    </div>
+    <button type="submit">Add Student</button>
+  </form>
+
+  <div class="student-list">
+    <h3>List of Students</h3>
+    <table id="studentsTable">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Course</th>
+          <th>Semester</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      {% for i in st %}
+      <tbody>
+        
+
+        <th>{{i.name}}</th>
+          <th>{{i.course}}</th>
+          <th>{{i.semester}}</th>
+          <th>{{i.phoneno}}</th>
+          <th>{{i.email}}</th>
+          <th><a href="/remove_student/{{i.id}}">Remove</a></th>
+         
+      </tbody>
+      {%endfor%}
+
+    </table>
+   
+  </div>
+</div>
+
+<script>
+  document.getElementById('studentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Get input values
+    const studentName = document.getElementById('studentName').value;
+    const course = document.getElementById('course').value;
+    const Semester = document.getElementById('semester').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+
+    // Create a new row for the student list
+    const table = document.getElementById('studentsTable').getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+
+    // Insert new cells for the row
+    newRow.insertCell(0).textContent = studentName;
+    newRow.insertCell(1).textContent = course;
+    newRow.insertCell(2).textContent = Semester;
+    newRow.insertCell(3).textContent = phone;
+    newRow.insertCell(4).textContent = email;
+
+    // Create a remove button for the new row
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-btn');
+    removeButton.addEventListener('click', function() {
+      table.deleteRow(newRow.rowIndex - 1);
+    });
+    
+    // Add the remove button to the last cell
+    newRow.insertCell(4).appendChild(removeButton);
+
+    // Reset the form
+    document.getElementById('studentForm').reset();
+  });
+</script>
+
+</body>
+</html>
