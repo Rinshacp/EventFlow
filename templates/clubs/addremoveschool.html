@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request</title>
+    <title>schools</title>
     <style>
         table {
             width: 100%;
@@ -38,42 +38,48 @@
 </head>
 <body>
 
-<h1>Instructions</h1>
+<h1>Schools</h1>
 <form method="post">
     {% csrf_token %}
-    <input type="text" id="username" placeholder="username" required name ="username">
-    <input type="text" id="items" placeholder="" required name ="Instruction">
-    <input type="text" id="instructions" placeholder="Instruction" required name ="Instruction">
-    <input type="text" id="instructions" placeholder="Instruction" required name ="Instruction">
-
-    
-    <button type="submit">Add </button>
+    <input type="text" id="name" placeholder="Name" required name ="name">
+    <input type="text" id="name" placeholder="place" required name ="place">
+    <input type="text" id="name" placeholder="post" required name ="post">
+    <input type="text" id="name" placeholder="pin" required name ="pin">
+    <input type="tel" id="phone" placeholder="Phoneno" required name="phoneno">
+    <input type="text" id="email" placeholder="email" required name="email">
+    <button type="submit">Add Entry</button>
 </form>
 
 <table id="entriesTable">
     <thead>
         <tr>
-          <th>#</th>
-            <th>Instruction</th>
-            
+            <th>Name</th>
+            <th>Place</th>
+            <th>Address</th>
+            <th>Phone No</th>
+            <th>Email</th>
         </tr>
         {%for i in val%}
         <tr>
-          <td>{{forloop.counter}}</td>
-            <td>{{i.instruction}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.post}},{{i.pin}}</td>
+            <td>{{i.phoneno}}</td>
+            <td>{{i.email}}</td>
 
 
-            <td> <a href="/collegeedit/{{i.id}}/">edit</a></td>
-            <td> <a href="/collegedelete/{{i.id}}/">remove</a></td>
-
+            <td>
+            <td> <a href="/schooledit/{{i.id}}/">edit</a></td>
+            <td> <a href="/schooldelete/{{i.id}}/">remove</a></td>
+            </td>
         </tr>
         {%endfor%}
-    </thead>
-    <tbody>
+    </thead>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     </tbody>
+   
 </table>
 
-<!-- <script>
+<script>
     let editingRow = null;
 
     document.getElementById('entryForm').addEventListener('submit', function(event) {
@@ -128,7 +134,7 @@
 
         document.getElementById('entryForm').reset();
     });
-</script> -->
+</script>
 
 </body>
 </html>

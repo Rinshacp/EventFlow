@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration Form</title>
+  <title>club edit</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -94,45 +94,30 @@
 </head>
 <body>
   <div class="form-container">
-    <h2>Register Here</h2>
-    <form action="#">
+    <h2>College edit form</h2>
+    <form action=""method="post">
+      {%csrf_token%}
       <div class="form-group">
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" name="fullname" required>
+        <label for="name">Name</label>
+        <input type="text" id="Name" name="name" value={{val.name}} >
       </div>
       <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
+        <label for="address">place</label>
+        <input type="text" id="address" name="place" value={{val.place}} >
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+        <label for="address">Address</label>
+        <input type="text" id="address" name="post" value={{val.post}},{{val.pin}} >
       </div>
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required>
+        <input type="tel" id="phone" name="phoneno" value={{val.phoneno}}>
       </div>
-
-      <!-- Gender Selection as Buttons -->
       <div class="form-group">
-        <label>Gender</label>
-        <div class="gender-buttons">
-          <input type="radio" id="male" name="gender" value="male" required>
-          <label for="male">Male</label>
-
-          <input type="radio" id="female" name="gender" value="female" required>
-          <label for="female">Female</label>
-
-          <input type="radio" id="prefer-not-to-say" name="gender" value="prefer-not-to-say" required>
-          <label for="prefer-not-to-say">Prefer not to say</label>
-        </div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value={{val.email}}>
       </div>
-
-      <button type="submit" class="btn">Register</button>
+      <button type="submit" class="btn">Update</button>
     </form>
   </div>
 </body>

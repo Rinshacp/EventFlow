@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request</title>
+    <title>Instructions</title>
     <style>
         table {
             width: 100%;
@@ -41,11 +41,7 @@
 <h1>Instructions</h1>
 <form method="post">
     {% csrf_token %}
-    <input type="text" id="username" placeholder="username" required name ="username">
-    <input type="text" id="items" placeholder="" required name ="Instruction">
     <input type="text" id="instructions" placeholder="Instruction" required name ="Instruction">
-    <input type="text" id="instructions" placeholder="Instruction" required name ="Instruction">
-
     
     <button type="submit">Add </button>
 </form>

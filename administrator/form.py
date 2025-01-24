@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from administrator.models import clubtable, collegetable, feedback, notificationtable, schooltable, servicetable 
+from administrator.models import activities, clubtable, collegetable, feedback, notificationtable, schooltable, servicetable 
 
 
 class clubform(ModelForm):
@@ -97,6 +97,18 @@ class feedbackform(ModelForm):
         fields=[
             'feedback',
         ]
+class activitiesForm(ModelForm):
+    class meta:
+        model=activities
+        fields=[
+            'item',
+            'rules',
+            'description',
+            'status',
+             'level',
+              'CLUB'
+              ]
+
 
 
 class ClubRegistrartionForm(ModelForm):
@@ -111,3 +123,12 @@ class ClubRegistrartionForm(ModelForm):
             'email',
 
         ]
+
+class complaintsFrom(ModelForm):
+    class Meta:
+        model=complaintsTable
+        field=[
+           
+
+        ]
+class membersForm()

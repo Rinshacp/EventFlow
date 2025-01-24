@@ -19,24 +19,6 @@ class User(models.Model):
     pin=models.IntegerField(null=True,blank=True)
     LOGIN_ID=models.ForeignKey(LoginTable, on_delete=models.CASCADE,null=True,blank=True)
 
-class collegetable(models.Model):
-    
-    name=models.CharField(max_length=30,null=True,blank=True)
-    place=models.CharField(max_length=30,null=True,blank=True)
-    post=models.CharField(max_length=30,null=True,blank=True)
-    pin=models.IntegerField(null=True,blank=True)
-    phoneno=models.IntegerField(null=True,blank=True)
-    email=models.CharField(max_length=30,null=True,blank=True)
-    LOGIN_ID=models.ForeignKey(LoginTable, on_delete=models.CASCADE,null=True,blank=True)
-
-class schooltable(models.Model):
-    LOGIN_ID=models.ForeignKey(LoginTable, on_delete=models.CASCADE,null=True,blank=True)
-    name=models.CharField(max_length=30,null=True,blank=True)
-    place=models.CharField(max_length=30,null=True,blank=True)
-    post=models.CharField(max_length=30,null=True,blank=True)
-    pin=models.IntegerField(null=True,blank=True)
-    phoneno=models.IntegerField(null=True,blank=True)
-    email=models.CharField(max_length=30,null=True,blank=True)
     
 class clubtable(models.Model):
     LOGIN_ID=models.ForeignKey(LoginTable, on_delete=models.CASCADE,null=True,blank=True)
@@ -104,6 +86,33 @@ class ratingclass(models.Model):
     rating=models.CharField(max_length=60,null=True,blank=True)
     description=models.CharField(max_length=400,null=True,blank=True)
 
+class addandmanagemembers(models.Model):
+     name=models.CharField(max_length=30,null=True,blank=True)
+     Department=models.CharField(max_length=30,null=True,blank=True)
+     year=models.CharField(max_length=30,null=True,blank=True)
+     club=models.CharField(max_length=30,null=True,blank=True)
+     email=models.CharField(max_length=30,null=True,blank=True)
+     phoneno=models.IntegerField(null=True,blank=True)
+     status=models.CharField(max_length=100,null=True,blank=True)
+
+class register(models.Model):
+    fullname=models.CharField(max_length=100,null=True,blank=True)
+    username=models.CharField(max_length=100,null=True,blank=True)
+    email=models.CharField(max_length=30,null=True,blank=True)
+    password=models.CharField(max_length=30,null=True,blank=True)
+    phoneno=models.IntegerField(null=True,blank=True)
+    gender=models.CharField(max_length=30,null=True,blank=True)
+
+class request(models.Model):
+      USER=models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
+      club_id=models.CharField(max_length=30,null=True,blank=True)
+      status=models.CharField(max_length=30,null=True,blank=True)
+
+class clubLogin(models.Model):
+    username = models.CharField(max_length=30,null=True,blank=True)
+    password=models.CharField(max_length=30,null=True,blank=True)
+    usertype=models.CharField(max_length=30,null=True,blank=True)
+    
 
 
 
