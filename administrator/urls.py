@@ -4,40 +4,35 @@ from .views import *
 
 urlpatterns = [
     # ////////////////////ADMIN/////////////////////////
-    path('addremoveclub/',addremoveclub.as_view(),name='addremoveclub'),
-    path('clubedit/',clubedit.as_view(),name='clubedit'),
-    path('homepage/',homepage.as_view(),name='homepage'),
     path('login/',login.as_view(),name='login'),
-    path('sendnotification/',sendnotification.as_view(),name='sendnotification'),
-    path('servicesbyclub/',servicesbyclub.as_view(),name='servicesbyclub'),
-    path('viewactivities/',viewactivities.as_view(),name='viewactivities'),
+    path('login/',Logout.as_view(),name='login'),
+    path('viewevent/',viewevent.as_view(),name='viewevent'),
+    path('viewstudent/',viewstudents.as_view(),name='viewstudents'),
     path('viewcomplaints/',viewcomplaints.as_view(),name='viewcomplaints'),
-    path('viewservices/',viewservices.as_view(),name='viewservices'),
-    path('viewuser/',View_user.as_view(),name='viewuser'),
+    path('sendreply/',sendreply.as_view(),name='sendreply'),
+    path('sendnotification/',sendnotification.as_view(),name='sendnotification'),
+    path('acceptevent/',acceptevent.as_view(),name='acceptevent'),
+    path('rejectevent/',rejectevent.as_view(),name='rejectevent'),
+    path('viewfeedback/',viewfeedback.as_view(),name='viewfeedback'),
+    path('homepage/',homepage.as_view(),name='homepage'),
     
-
-
-#//////////////CLUB///////////////
-   path('clubhomepage/',clubhomepage.as_view(),name='clubhomepage'),
-   path('clublogin/',clublogin.as_view(),name='clublogin'),
-   path('studentregister/',studentregister.as_view(),name='studentregister'),
-   path('sendcomplaints/',sendcomplaints.as_view(),name='sendcomplaints'),
-   path('sendrequest/',sendrequest.as_view(),name='sendrequest'),
-   path('viewfeedback/',viewfeedback.as_view(),name='viewfeedback'),
-   path('viewnotification/',View_notification.as_view(),name='viewnotification'),
-   path('Status/',Status.as_view(),name='status'),
+    
 
 
 #////////////////////CLUB COORDINATOR////////////
 
-    path('add&managemembers/',addmanagemembers.as_view(),name='add&managemembers'),
-    path('addevent/',addevent.as_view(),name='addevent'),
-    path('addinstructions/',addinstructions.as_view(),name='addinstructions'), 
-    path('coordinatorregister/',coordinatorregister.as_view(),name='coordinatorregister'),
-    path('infromation/',information.as_view(),name='information'),
-    path('notificationtable/',notificationtable.as_view(),name='notificationtable'),
-    path('sendnotification/',sendnotification.as_view(),name='sendnotification'),
-    path('viewcomplaints/',viewcomplaints.as_view(),name='viewcomplaints'),
-    path('viewfeedback/',viewfeedback.as_view(),name='viewfeedback'),
-    path('viewrequest/',viewrequest.as_view(),name='viewrequest'),
-]
+    path('eventregister/',eventregister.as_view(),name='eventregister'),
+    path('sendcomplaints/',sendcomplaints.as_view(),name='sendcomplaints'),
+    path('viewreply/',viewreply.as_view(),name='viewreply'),
+    path('addormanageevent/',addormanageevent.as_view(),name='addormanageevent'),
+    path('Deleteeventtable/',Deleteeventtable.as_view(),name='Deleteeventtable'),
+    path('addormanageinstruction/',addormanageinstruction.as_view(),name='addormanageinstruction'),
+    path('Deleteinstruction/',Deleteinstruction.as_view(),name='Deleteinstruction'),
+    path('acceptstudent/',acceptstudent.as_view(),name='acorrejstudent'),
+    path('rejectstudentt/',rejectstudent.as_view(),name='acorrejstudent'),
+    path('addgallery/',addgallery.as_view(),name='addgallery'),
+    path('Deletegallery/',Deletegallerytable.as_view(),name='addgallery'),
+    path('Studentsofevent/',Studentsofevent.as_view(),name='listofevent'),
+    path('Listofstudent/',Listofstudent.as_view(),name='Listofstudent'),
+
+    ]

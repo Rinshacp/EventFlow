@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>accept or reject students</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>STUDENTS</h1>
+<table id="entriesTable">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>DOB</td>
+            <td>Gender</td>
+            <td>Department</td>
+            <td>Religion</td>
+            <td>Address</td>
+            <td>Place</td>
+            <td>Email</td>
+            <td>Phone number</td>
+            
+        <tr>
+            {%for i in val%}
+            <tr>
+                <td>{{i.USER.name}}</td>
+                <td>{{i.DOB}}</td>
+                <td>{{i.Gender}}</td>
+                <td>{{i.Department}}</td>
+                <td>{{i.Religion}}</td>
+                <td>{{i.Address}}</td>
+                <td>{{i.Place}}</td>
+                <td>{{i.Email}}</td>
+                <td>{{i.Phone number}}</td>
+                <td><div class="action-buttons"></div>
+                    <a href=""><button class="btn btn-accept">Accept</button></a>
+                    <a href=""><button class="btn btn-reject">Reject</button></td></a>
+                </div>
+                
+            </tr>
+            {%endfor%}
+    
+
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Entries</title>
+    <title>list of students</title>
     <style>
         table {
             width: 100%;
@@ -37,22 +37,19 @@
     </style>
 </head>
 <body>
+ <h1>List Ofstudents</h1>
 <table id="entriesTable">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-            <th>Email</th>
+            {%for i in val%}
+            <th>No</th>
+            <th>students</th>
             
         </tr>
         <tr>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            
-
+        
         </tr>
     </thead>
     <tbody>

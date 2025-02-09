@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-form {
+            margin-bottom: 20px;
+        }
+        .gallery-form input, .gallery-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .gallery-form button {
+            padding: 10px 15px;
+            border: none;
+            background: #5a67d8;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .gallery-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 300px;
+        }
+        .gallery-item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .gallery-item h3 {
+            margin: 10px 0 5px;
+        }
+        .gallery-item p {
+            color: #555;
+            font-size: 14px;
+        }
+        .gallery-item .date {
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Gallery</h1>
+        <div class="gallery-form">
+            <input type="text" id="title" placeholder="Event Title">
+            <input type="file" id="image" placeholder="Image URL">
+            <textarea id="description" placeholder="Event Description"></textarea>
+            <button onclick="addGalleryItem()">Add Event</button>
+        </div>
+        <div class="gallery-container" id="gallery"></div>
+    </div>
+    
+    <script>
+        function addGalleryItem() {
+            const title = document.getElementById('title').value;
+            const image = document.getElementById('image').value;
+            const description = document.getElementById('description').value;
+            const dateTime = new Date().toLocaleString();
+
+            if (!title || !image || !description) {
+                alert("Please fill out all fields");
+                return;
+            }
+
+            const galleryContainer = document.getElementById('gallery');
+            const galleryItem = document.createElement('div');
+            galleryItem.classList.add('gallery-item');
+            galleryItem.innerHTML = `
+                <img src="${image}" alt="${title}">
+                <h3>${title}</h3>
+                <p>${description}</p>
+                <p class="date">Date: ${dateTime}</p>
+            `;
+            galleryContainer.appendChild(galleryItem);
+        }
+    </script>
+</body>
+</html>

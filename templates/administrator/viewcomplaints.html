@@ -21,20 +21,22 @@
 </head>
 <body>
 
-<h1>complaints</h1>
+<h1>view complaints</h1>
 <table id="entriesTable">
     <thead>
         <tr>
-            <td>Name</td>
-            <td>Complaint</td>
-    
+            <td>name</td>
+            <td>complaints</td>
             <td>date</td>
         <tr>
             {%for i in val%}
             <tr>
-                <td>{{i.USER.name}}</td>
-                <td>{{i.complaints}}</td>
-                <td>{{i.date}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">reply</a></td>
+               
+                
                 
             </tr>
             {%endfor%}
@@ -42,8 +44,7 @@
 
         </tr>
     </thead>
-    <tbody>
-    </tbody>
+    
 </table>
 </body>
 </html>

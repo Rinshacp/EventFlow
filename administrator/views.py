@@ -16,7 +16,7 @@ class login(View):
         password=request.POST['password']
         print(password)
 
-        login_obj = LoginTable.objects.get(username=username,password=password)
+        login_obj = LoginTable.objects.get(username=username,password=password,status='accept')
 
         if login_obj.usertype=="admin":
             return HttpResponse('''<script>alert("welcome to admin home");window.location="/homepage/"</script>''')
@@ -26,49 +26,22 @@ class login(View):
 class Logout(View):
      def get(self,request):
          return HttpResponse('''<script>alert("Logout Successfully");window.location="/"</script>''')
-        
+class viewevent(View):
+    def get(self, request):
+        obj = eventtable.objects.all()
+        return render(request, 'administrator/viewevent.html',{'obj':obj})
 
-class homepage(View):
+class viewstudents(View):
     def get(self,request):
-        return render(request,'administrator/homepage.html') 
-      
-
-class addremoveclub(View):
+        obj = studentstable.objects.filter(status='Accepted')
+        return render(request, 'administrator/viewstudents.html',{'obj':obj})        
+class viewcomplaints(View):
     def get(self,request):
-        obj=clubtable.objects.all()
-        print(obj)
-        return render(request,'administrator/addremoveclub.html',{'val':obj})
-    def post(self,request):
-        form=clubform(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('''<script>alert("ADDED");window.location="/addremoveclub/"</script>''')    
-        return HttpResponse('''<script>alert("FAILED");window.location="/addremoveclub/"</script>''')
-    
-class clubedit(View):
-    def get(self,request,id):
-        obj=clubtable.objects.get(id=id)
-        return render(request,'administrator/clubedit.html',{'val':obj})
-    def post(self,request,id):
-        obj = clubtable.objects.get(id=id)
-        print("obj")
-        form = Updateclubform(request.POST,instance=obj)
-        if form.is_valid():
-            form.save()
-        return HttpResponse('''<script>alert("UPDATED");window.location="/addremoveclub/"</script>''')
-    
-class Deleteclubtable(View):
-    def get(self,request,id):
-        obj=clubtable.objects.get(id=id)
-        obj.delete()
-        return HttpResponse('''<script>alert("DELETED");window.location="/addremoveclub"</script>''')     
-
-class clubhomepage(View):
+        obj = complaints.objects.all()
+        return render(request,'administrator/viewcomplaints.html',{'val':obj})
+class sendreply(View):
     def get(self,request):
-        return render(request,'clubs/clubhomepage.html') 
-
-                                       
-        
+        return render(request,'administrator/sentreply.html') 
 class sendnotification(View):
     def get(self,request):
         obj=User.objects.all()
@@ -79,82 +52,35 @@ class sendnotification(View):
         if form.is_valid():
             form.save()
             return HttpResponse('''<script>alert("ADDED");window.location="/viewnotification/"</script>''')
-
- 
-class View_notification(View):
-    def get(self, request):
-        obj = notificationtable.objects.all()
-        return render(request, 'event/notificationtable.html',{'obj':obj})
-
-
-class servicesbyclub(View):
-    def get(self,request):
-        obj = servicetable.objects.all()
-        return render(request,'administrator/servicesbyclub.html',{'obj':obj})
-
-class viewservices(View):
-    def get(self,request):
-        obj = servicetable.objects.filter(status='Accepted')
-        return render(request, 'administrator/viewservices.html',{'obj':obj})
-class acceptservices(View):
+class acceptevent(View):
     def get(self,request,id):
-        obj = servicetable.objects.get(id=id)
-        obj.status = 'Accepted'
-        obj.save()
-        return redirect('servicesbyclub')
+        obj = User.objects.get(id=id)
+        c=EventTable.objects.get(id=obj.id)
+        c.status = 'accept'
+        c.save()
+        return redirect('viewevent')
     
-class rejectservices(View):
+class rejectevent(View):
     def get(self,request,id):
-        obj = servicetable.objects.get(id=id)
-        obj.status = 'Rejected'
-        obj.save()
-        return redirect('servicesbyclub')
-        
-class viewactivities(View):
+        obj = User.objects.get(id=id)
+        c=EventTable.objects.get(id=obj.id)
+        c.status = 'reject'
+        c.save()
+        return redirect('viewevent')
+class viewfeedback(View):
     def get(self,request):
-        obj = activities.objects.all()
-        return render(request,'administrator/viewactivities.html', {'val':obj})
-class viewcomplaints(View):
+        return render(request,'administrator/viewfeedback.html')
+    
+class homepage(View):
     def get(self,request):
-        obj = complaints.objects.all()
-        return render(request,'administrator/viewcomplaints.html',{'val':obj})
-    
-
-class View_user(View):
-    def get(self, request):
-        obj = User.objects.all()
-        return render(request, 'administrator/viewuser.html', {'val':obj})
-    def post(self, request):
-        name=request.POST('name')
-        obj1=User.objects.filter(name=name)
-        print(obj1)
-        return render(request,'administrator/viewuser.html', {'val1':obj1})
-
-# ////////////////////////// club//////////////
-class clubhomepage(View):
-    def get(self,request):
-        return render(request,'clubs/clubhomepage.html') 
-    
-class clublogin(View):
-    def get(self,request):
-        return render(request,'clubs/clublogin.html')
-    
-class sendrequest(View):
-    def get(self,request):
-        return render(request,'clubs/sendrequest.html') 
-    
-
-class sendcomplaints(View):
-    def get(self,request):
-        return render(request,'clubs/sendcomplaints.html') 
-    
-    
+        return render(request,'administrator/homepage.html') 
       
-class studentregister(View):
+# ////////////////////////// clubcoordinator//////////////
+class eventregister(View):
     def get(self,request):
-        return render(request,'clubs/studentregister.html')
+        return render(request,'clubcoordinator/eventregister.html')
     def post(self,request):
-        form=ClubRegistrartionForm(request.POST)
+        form=EventRegisterForm(request.POST)
         if form.is_valid():
             f=form.save(commit=False)
             obj = LoginTable()
@@ -165,63 +91,92 @@ class studentregister(View):
             f.LOGIN_ID=obj
             f.save()
             return HttpResponse('''<script>alert("ADDED");window.location="/"</script>''')
+class sendcomplaints(View):
+    def get(self,request):
+        return render(request,'clubcoordinator/sendcomplaints.html') 
+class viewreply(View):
+    def get(self,request):
+        return render(request,'clubs/viewreply.html')
 
+class addormanageevent(View):
+    def get(self,request,id):
+        obj=eventtable.objects.get(id=id)
+        return render(request,'clubcoordinator/addormanageevent.html',{'val':obj})
+    def post(self,request,id):
+        obj = eventtable.objects.get(id=id)
+        print("obj")
+        form = Updateeventform(request.POST,instance=obj)
+        if form.is_valid():
+            form.save()
+        return HttpResponse('''<script>alert("UPDATED");window.location="/addormanageevent/"</script>''')
     
-class viewnotificasion(View):
-    def get(self,request):
-        return render(request,'clubs/viewnotification.html')
-    
-class viewfeedback(View):
-    def get(self,request):
-        return render(request,'clubs/viewfeedback.html')
-    
-class Status(View):
-     def get(self,request):
-        return render(request,'clubs/addinstructions.html')
+class Deleteeventtable(View):
+    def get(self,request,id):
+        obj=clubtable.objects.get(id=id)
+        obj.delete()
+        return HttpResponse('''<script>alert("DELETED");window.location="/addormanageevent/"</script>''')     
 
-
-#////////////////CLUB COORDINATOR/////////////
-class addmanagemembers(View):
-    def get(self,request):
-        return render(request,'Club coordinator/addmanagemembers.html')
+class addormanageinstruction(View):
+    def get(self,request,id):
+        obj=instructiontable.objects.get(id=id)
+        return render(request,'clubcoordinator/addormanageinstruction.html',{'val':obj})
+    def post(self,request,id):
+        obj = instructiontable.objects.get(id=id)
+        print("obj")
+        form = Updateinstructionform(request.POST,instance=obj)
+        if form.is_valid():
+            form.save()
+        return HttpResponse('''<script>alert("UPDATED");window.location="/addormanageinstruction/"</script>''')
     
-class addevent(View):
-    def get(self,request):
-        return render(request,'Club coordinator/addevent.html')
+class Deleteinstruction(View):
+    def get(self,request,id):
+        obj=instructiontable.objects.get(id=id)
+        obj.delete()
+        return HttpResponse('''<script>alert("DELETED");window.location="/addormanageinstruction/"</script>''')   
+class Deleteinstruction(View):
+    def get(self,request,id):
+        obj = User.objects.get(id=id)
+        c=LoginTable.objects.get(id=obj.id)
+        c.status = 'accept'
+        c.save()
+        return redirect('addormanageinstruction')
+class acceptstudent(View):
+    def get(self,request,id):
+        obj = User.objects.get(id=id)
+        c=LoginTable.objects.get(id=obj.id)
+        c.status = 'accept'
+        c.save()
+        return redirect('viewstudent')
     
-class addinstructions(View):
+class rejectstudent(View):
+    def get(self,request,id):
+        obj = User.objects.get(id=id)
+        c=LoginTable.objects.get(id=obj.id)
+        c.status = 'reject'
+        c.save()
+        return redirect('viewstudent')
+class addgallery(View):
+    def get(self,request,id):
+        obj=gallerytable.objects.get(id=id)
+        return render(request,'clubcoordinator/addgallery.html',{'val':obj})
+    def post(self,request,id):
+        obj = gallerytable.objects.get(id=id)
+        print("obj")
+        form = Updategalleryform(request.POST,instance=obj)
+        if form.is_valid():
+            form.save()
+        return HttpResponse('''<script>alert("UPDATED");window.location="/addgallery/"</script>''')
+class Deletegallerytable(View):
+    def get(self,request,id):
+        obj=gallerytable.objects.get(id=id)
+        obj.delete()
+        return HttpResponse('''<script>alert("DELETED");window.location="/addgallery/"</script>''')    
+class Studentsofevent(View):
     def get(self,request):
-        return render(request,'Club coordinator/addinstructions.html')
-    
-class coordinatorregister(View):
+        return render(request,'Club coordinator/listofevent.html')
+class Listofstudent(View):
     def get(self,request):
-        return render(request,'Club coordinator/coordinatorregister.html')
-
-class information(View):
-    def get(self,request):
-        return render(request,'Club coordinator/information.html')
-    
-class notificationtable(View):
-    def get(self,request):
-        return render(request,'Club coordinator/notificationtable.html')
-    
-class sendnotification(View):
-    def get(self,request):
-        return render(request,'Club coordinator/sendnotification.html')
-    
-class viewcomplaints(View):
-    def get(self,request):
-        return render(request,'Club coordinator/viewcomplaints.html')
-
-
-
-class viewfeedback(View):
-    def get(self,request):
-        return render(request,'Club coordinator/viewfeedback.html')
-    
-class viewrequest(View):
-    def get(self,request):
-        return render(request,'Club coordinator/viewrequest.html')
+        return render(request,'Club coordinator/listofstudent.html')
 
 
     
